@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Food Wagon PR Animation (9:16)</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #fbf8f2; }
+  #stage { display: block; width: 1080px; height: 1920px; }
+  text, tspan { user-select: none; }
+</style>
+</head>
+<body>
+<svg id="stage" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#stageClip)">
+    <defs>
+      <clipPath id="stageClip"><rect x="0" y="0" width="1080" height="1920"/></clipPath>
+    </defs>
+
+    <!-- background -->
+    <rect x="0" y="0" width="1080" height="1920" fill="#fbf8f2"/>
+
+    <!-- drifting clouds -->
+    <g id="cloud1" fill="#ffffff" stroke="#c9d3d1" stroke-width="4">
+      <ellipse cx="0" cy="0" rx="90" ry="42"/>
+      <ellipse cx="70" cy="-18" rx="60" ry="34"/>
+      <ellipse cx="-75" cy="-10" rx="55" ry="30"/>
+    </g>
+    <g id="cloud2" fill="#ffffff" stroke="#c9d3d1" stroke-width="4">
+      <ellipse cx="0" cy="0" rx="70" ry="32"/>
+      <ellipse cx="55" cy="-14" rx="45" ry="26"/>
+    </g>
+
+    <!-- title -->
+    <g id="title" font-family="Arial, Helvetica, sans-serif" text-anchor="middle" opacity="0">
+      <text x="540" y="330" font-size="86" font-weight="bold" fill="#3d4247" letter-spacing="4">FOOD WAGON</text>
+      <text x="540" y="430" font-size="60" fill="#8b9498" letter-spacing="14">CAFE</text>
+      <line x1="330" y1="480" x2="470" y2="480" stroke="#f2c94c" stroke-width="8" stroke-linecap="round"/>
+      <line x1="610" y1="480" x2="750" y2="480" stroke="#f2c94c" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="540" cy="480" r="9" fill="#f2c94c"/>
+    </g>
+
+    <!-- ground -->
+    <line x1="60" y1="1420" x2="1020" y2="1420" stroke="#ddd6c9" stroke-width="6"
+          stroke-linecap="round" stroke-dasharray="2 90"/>
+
+    <!-- ===== truck scene (scene coords ~470x330, scaled up) ===== -->
+    <g id="scene" transform="translate(52,760) scale(2.05)">
+
+      <!-- shadow for sign (stays put) -->
+      <ellipse id="signShadow" cx="424" cy="316" rx="48" ry="7" fill="#eee8dc" opacity="0"/>
+
+      <!-- truck (drives in) -->
+      <g id="truckMove">
+        <ellipse id="truckShadow" cx="228" cy="310" rx="185" ry="9" fill="#eee8dc"/>
+        <g id="truckBob">
+
+          <!-- cargo box with rounded roof -->
+          <path d="M 178 252 L 178 112 Q 178 66 226 62 L 348 57 Q 398 56 398 100 L 398 252 Z"
+                fill="#dbe9e6" stroke="#8b9498" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- roof highlight -->
+          <path d="M 196 84 Q 200 72 224 70 L 300 67" fill="none" stroke="#f7f5ef" stroke-width="5" stroke-linecap="round"/>
+
+          <!-- over-cab roof bulge -->
+          <path d="M 178 118 L 108 122 Q 90 122 90 102 Q 90 76 128 72 L 178 68 Z"
+                fill="#dbe9e6" stroke="#8b9498" stroke-width="3.5" stroke-linejoin="round"/>
+
+          <!-- cab -->
+          <path d="M 64 244 L 64 182 Q 64 158 88 154 L 104 150 L 126 120 L 178 116 L 178 244 Z"
+                fill="#dbe9e6" stroke="#8b9498" stroke-width="3.5" stroke-linejoin="round"/>
+
+          <!-- windshield -->
+          <polygon points="112,150 132,122 158,120 158,150" fill="#eef6f5" stroke="#8b9498" stroke-width="3" stroke-linejoin="round"/>
+          <g stroke="#c9d8d5" stroke-width="3" stroke-linecap="round">
+            <line x1="126" y1="146" x2="142" y2="124"/>
+            <line x1="136" y1="147" x2="150" y2="127"/>
+          </g>
+          <!-- door window -->
+          <polygon points="166,150 166,121 194,119 194,150" fill="#eef6f5" stroke="#8b9498" stroke-width="3" stroke-linejoin="round"/>
+          <line x1="176" y1="146" x2="188" y2="126" stroke="#c9d8d5" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- door seams + handle -->
+          <path d="M 162 156 L 162 250" fill="none" stroke="#8b9498" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 198 154 L 198 250" fill="none" stroke="#8b9498" stroke-width="3" stroke-linecap="round"/>
+          <rect x="167" y="163" width="12" height="5" rx="2" fill="#f2c94c" stroke="#8b9498" stroke-width="2"/>
+
+          <!-- headlight (with blink glow) -->
+          <circle id="lightGlow" cx="77" cy="196" r="16" fill="#ffe9a3" opacity="0"/>
+          <circle cx="77" cy="196" r="9" fill="#f2c94c" stroke="#8b9498" stroke-width="3"/>
+          <!-- grille -->
+          <g stroke="#8b9498" stroke-width="2.5" stroke-linecap="round">
+            <line x1="70" y1="215" x2="96" y2="215"/>
+            <line x1="70" y1="221" x2="96" y2="221"/>
+            <line x1="70" y1="227" x2="96" y2="227"/>
+          </g>
+          <!-- license plate -->
+          <rect x="66" y="234" width="32" height="12" rx="3" fill="#f2c94c" stroke="#8b9498" stroke-width="2.5"/>
+
+          <!-- serving window -->
+          <rect x="235" y="120" width="130" height="78" rx="4" fill="#3d4247" stroke="#8b9498" stroke-width="3.5"/>
+          <line x1="247" y1="168" x2="352" y2="168" stroke="#5a6065" stroke-width="3" stroke-linecap="round"/>
+          <!-- coffee cup on the counter -->
+          <g id="cup" opacity="0">
+            <path d="M 314 182 Q 321 182 321 188 Q 321 193 314 193" fill="none" stroke="#f7f5ef" stroke-width="3"/>
+            <path d="M 296 178 L 315 178 L 313 194 L 298 194 Z" fill="#f7f5ef" stroke="#8b9498" stroke-width="2.5" stroke-linejoin="round"/>
+          </g>
+          <!-- steam puffs rising from the cup -->
+          <g fill="#ffffff" stroke="#c9d3d1" stroke-width="2">
+            <circle id="puff1" cx="303" cy="172" r="5" opacity="0"/>
+            <circle id="puff2" cx="309" cy="172" r="6" opacity="0"/>
+            <circle id="puff3" cx="304" cy="172" r="4.5" opacity="0"/>
+          </g>
+          <!-- counter ledge -->
+          <rect x="228" y="194" width="144" height="12" rx="3" fill="#f2c94c" stroke="#8b9498" stroke-width="3"/>
+
+          <!-- skirt -->
+          <line x1="178" y1="252" x2="398" y2="252" stroke="#8b9498" stroke-width="3"/>
+          <rect x="64" y="244" width="334" height="14" rx="4" fill="#cfe0dd" stroke="#8b9498" stroke-width="3"/>
+
+          <!-- wheels -->
+          <g>
+            <circle cx="120" cy="276" r="34" fill="#3d4247" stroke="#8b9498" stroke-width="3"/>
+            <circle cx="120" cy="276" r="15" fill="#e8e6e1" stroke="#8b9498" stroke-width="2.5"/>
+            <g id="wheelFrot" stroke="#8b9498" stroke-width="2.5" stroke-linecap="round">
+              <line x1="120" y1="265" x2="120" y2="271"/>
+              <line x1="120" y1="281" x2="120" y2="287"/>
+              <line x1="109" y1="276" x2="115" y2="276"/>
+              <line x1="125" y1="276" x2="131" y2="276"/>
+            </g>
+          </g>
+          <g>
+            <circle cx="330" cy="276" r="34" fill="#3d4247" stroke="#8b9498" stroke-width="3"/>
+            <circle cx="330" cy="276" r="15" fill="#e8e6e1" stroke="#8b9498" stroke-width="2.5"/>
+            <g id="wheelRrot" stroke="#8b9498" stroke-width="2.5" stroke-linecap="round">
+              <line x1="330" y1="265" x2="330" y2="271"/>
+              <line x1="330" y1="281" x2="330" y2="287"/>
+              <line x1="319" y1="276" x2="325" y2="276"/>
+              <line x1="335" y1="276" x2="341" y2="276"/>
+            </g>
+          </g>
+
+          <!-- awning flap: hinged at window top, swings down into place (drawn in front) -->
+          <g id="awning" transform="rotate(-32 236 120)" opacity="0">
+            <polygon points="236,116 410,72 414,83 239,128" fill="#f7f5ef" stroke="#8b9498" stroke-width="3" stroke-linejoin="round"/>
+            <g stroke="#8b9498" stroke-width="2">
+              <polygon points="318,101 334,97 337,109 321,113" fill="#f2c94c"/>
+              <polygon points="334,97 350,93 353,105 337,109" fill="#f7f5ef"/>
+              <polygon points="350,93 366,89 369,101 353,105" fill="#f2c94c"/>
+              <polygon points="366,89 382,85 385,97 369,101" fill="#f7f5ef"/>
+              <polygon points="382,85 398,81 401,93 385,97" fill="#f2c94c"/>
+              <polygon points="398,81 414,77 417,89 401,93" fill="#f7f5ef"/>
+            </g>
+          </g>
+          <!-- awning support strut (fades in once open) -->
+          <line id="strut" x1="406" y1="86" x2="372" y2="196" stroke="#8b9498" stroke-width="3" stroke-linecap="round" opacity="0"/>
+
+        </g><!-- /truckBob -->
+      </g><!-- /truckMove -->
+
+      <!-- MENU sign (pops in, in front of truck rear) -->
+      <g id="signPop" transform="translate(424 310) scale(0)">
+        <g id="sign">
+          <line x1="401" y1="212" x2="391" y2="322" stroke="#b9c1c0" stroke-width="5" stroke-linecap="round"/>
+          <line x1="447" y1="204" x2="459" y2="322" stroke="#b9c1c0" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="388,206 452,196 461,298 397,308" fill="#3d4247" stroke="#8b9498" stroke-width="3" stroke-linejoin="round"/>
+          <polygon points="394,213 446,205 454,292 402,300" fill="none" stroke="#f7f5ef" stroke-width="2.5"/>
+          <g stroke="#f7f5ef" stroke-width="2.5" stroke-linecap="round">
+            <line x1="414" y1="232" x2="411" y2="224"/>
+            <line x1="424" y1="230" x2="424" y2="221"/>
+            <line x1="434" y1="231" x2="437" y2="223"/>
+          </g>
+          <text x="425" y="266" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="bold"
+                fill="#f7f5ef" text-anchor="middle" letter-spacing="1"
+                transform="rotate(-5 425 262)">MENU</text>
+        </g>
+      </g>
+
+      <!-- sparkles -->
+      <g stroke="#f2c94c" stroke-width="3" stroke-linecap="round">
+        <g id="sp1" transform="translate(430,160)" opacity="0"><line x1="-6" y1="0" x2="6" y2="0"/><line x1="0" y1="-6" x2="0" y2="6"/></g>
+        <g id="sp2" transform="translate(452,120)" opacity="0"><line x1="-5" y1="0" x2="5" y2="0"/><line x1="0" y1="-5" x2="0" y2="5"/></g>
+        <g id="sp3" transform="translate(210,38)" opacity="0"><line x1="-6" y1="0" x2="6" y2="0"/><line x1="0" y1="-6" x2="0" y2="6"/></g>
+        <g id="sp4" transform="translate(58,118)" opacity="0"><line x1="-5" y1="0" x2="5" y2="0"/><line x1="0" y1="-5" x2="0" y2="5"/></g>
+      </g>
+    </g><!-- /scene -->
+
+    <!-- OPEN badge -->
+    <g id="badge" opacity="0">
+      <g transform="rotate(-8 540 1600)">
+        <circle cx="540" cy="1600" r="105" fill="#f2c94c" stroke="#8b9498" stroke-width="6"/>
+        <circle cx="540" cy="1600" r="86" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="4 14" stroke-linecap="round"/>
+        <text x="540" y="1626" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="bold"
+              fill="#3d4247" text-anchor="middle" letter-spacing="3">OPEN</text>
+      </g>
+    </g>
+  </g>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+
+// easing helpers
+const clamp01 = v => Math.max(0, Math.min(1, v));
+const easeOutQuart = x => 1 - Math.pow(1 - x, 4);
+const easeOutBack = x => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const easeOutElastic = x => x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * (2 * Math.PI / 3)) + 1;
+const seg = (t, a, b) => clamp01((t - a) / (b - a)); // progress of t within [a,b]
+
+const DRIVE_END = 2.6;   // truck arrives
+const START_X = -560;    // scene-units offset at t=0
+const WHEEL_R = 34;
+
+function seek(t) {
+  // clouds drift
+  $("cloud1").setAttribute("transform", `translate(${840 - t * 14}, 560)`);
+  $("cloud2").setAttribute("transform", `translate(${200 + t * 9}, 680)`);
+
+  // truck drive-in
+  const p = easeOutQuart(seg(t, 0, DRIVE_END));
+  $("truckMove").setAttribute("transform", `translate(${START_X * (1 - p)},0)`);
+
+  // wheel rotation from distance travelled
+  const deg = ((-START_X) * p / WHEEL_R) * 180 / Math.PI;
+  $("wheelFrot").setAttribute("transform", `rotate(${deg} 120 276)`);
+  $("wheelRrot").setAttribute("transform", `rotate(${deg} 330 276)`);
+
+  // body bob: rumble while driving, settle dip at stop, gentle idle breathing
+  const speed = 1 - seg(t, 0, DRIVE_END);
+  let bobY = Math.sin(t * 28) * 2.6 * speed;
+  const settle = seg(t, DRIVE_END - 0.05, DRIVE_END + 0.7);
+  if (settle > 0 && settle < 1) bobY += Math.sin(settle * Math.PI * 2) * 3.5 * (1 - settle);
+  bobY += Math.sin(t * 2.1) * 1.4 * seg(t, DRIVE_END, DRIVE_END + 1);
+  $("truckBob").setAttribute("transform", `translate(0,${bobY})`);
+
+  // headlight double-blink right after stopping
+  const blink = t > 2.7 && t < 3.3 ? Math.max(0, Math.sin((t - 2.7) * 21)) : 0;
+  $("lightGlow").setAttribute("opacity", (blink * 0.9).toFixed(3));
+
+  // awning swings down into place (3.0 - 3.9s), tiny sway after
+  const a = easeOutBack(seg(t, 3.0, 3.9));
+  const sway = Math.sin(t * 1.7) * 1.3 * seg(t, 3.9, 4.6);
+  $("awning").setAttribute("transform", `rotate(${-32 * (1 - a) + sway} 236 120)`);
+  $("awning").setAttribute("opacity", seg(t, 3.0, 3.3).toFixed(3));
+  $("strut").setAttribute("opacity", seg(t, 3.75, 4.0).toFixed(3));
+
+  // MENU sign pops (4.2 - 5.0s), then wobbles
+  const sp = seg(t, 4.2, 5.0);
+  const s = sp === 0 ? 0 : easeOutElastic(sp);
+  $("signPop").setAttribute("transform", `translate(${424 * (1 - s)} ${310 * (1 - s)}) scale(${s})`);
+  $("signShadow").setAttribute("opacity", sp.toFixed(3));
+  const wob = Math.sin(t * 2.6) * 1.2 * seg(t, 5.0, 5.6);
+  $("sign").setAttribute("transform", `rotate(${wob} 424 310)`);
+
+  // coffee cup appears with the awning, steam loops from 4.6s
+  $("cup").setAttribute("opacity", seg(t, 4.0, 4.4).toFixed(3));
+  const puffs = [["puff1", 303, 0.0, 5], ["puff2", 309, 0.8, 6], ["puff3", 304, 1.6, 4.5]];
+  for (const [id, cx, off, r] of puffs) {
+    const el = $(id);
+    const gate = seg(t, 4.6 + off, 5.0 + off);
+    if (gate <= 0) { el.setAttribute("opacity", "0"); continue; }
+    const cycle = ((t - 4.6 - off) % 2.4) / 2.4;
+    el.setAttribute("cy", (172 - cycle * 42).toFixed(1));
+    el.setAttribute("cx", (cx + Math.sin(cycle * 6.28 + off) * 4).toFixed(1));
+    el.setAttribute("r", (r * (0.7 + cycle * 0.9)).toFixed(1));
+    const fade = cycle < 0.15 ? cycle / 0.15 : 1 - seg(cycle, 0.55, 1);
+    el.setAttribute("opacity", (gate * fade * 0.9).toFixed(3));
+  }
+
+  // sparkles twinkle (from 5.0s)
+  ["sp1", "sp2", "sp3", "sp4"].forEach((id, i) => {
+    const el = $(id);
+    const gate = seg(t, 5.0 + i * 0.25, 5.4 + i * 0.25);
+    const tw = Math.max(0, Math.sin(t * 3.1 + i * 1.9));
+    el.setAttribute("opacity", (gate * tw).toFixed(3));
+    const base = el.getAttribute("transform").split(" scale")[0];
+    el.setAttribute("transform", `${base} scale(${(0.6 + tw * 0.6).toFixed(3)})`);
+  });
+
+  // title fades in + rises (5.4 - 6.1s)
+  const ti = easeOutQuart(seg(t, 5.4, 6.1));
+  $("title").setAttribute("opacity", ti.toFixed(3));
+  $("title").setAttribute("transform", `translate(0,${((1 - ti) * 46).toFixed(1)})`);
+
+  // OPEN badge stamps in (6.8 - 7.5s), then gently pulses
+  const bp = seg(t, 6.8, 7.5);
+  if (bp === 0) {
+    $("badge").setAttribute("opacity", "0");
+  } else {
+    const bs = (1.6 - 0.6 * easeOutBack(bp)) * (1 + Math.sin(t * 2.4) * 0.012 * seg(t, 7.5, 8.2));
+    $("badge").setAttribute("opacity", Math.min(1, bp * 1.6).toFixed(3));
+    $("badge").setAttribute("transform", `translate(${540 * (1 - bs)} ${1600 * (1 - bs)}) scale(${bs.toFixed(4)})`);
+  }
+}
+
+window.seek = seek;
+seek(0);
+
+// live preview when opened in a normal browser
+if (!navigator.webdriver) {
+  const t0 = performance.now();
+  (function loop() {
+    seek(((performance.now() - t0) / 1000) % 10);
+    requestAnimationFrame(loop);
+  })();
+}
+</script>
+</svg>
+</body>
+</html>
